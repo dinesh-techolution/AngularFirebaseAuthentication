@@ -8,6 +8,7 @@
          <h2>Hi: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h2>
          <p>User ID: <strong>{{user.uid}}</strong></p>
          <p>Email: <strong>{{user.email}}</strong></p>
+         <p>number: <strong>{{test}}</strong></p>
        </div>
      </div>
    </div>
@@ -17,3 +18,32 @@
    </a>
 
  </div>
+
+ <label>
+  <input
+    type="file"
+    class="text-nowrap text-truncate"
+    (change)="selectFile($event)"
+  />
+</label>
+
+<button
+  class="btn btn-success btn-sm"
+  [disabled]="!selectedFiles"
+  (click)="upload()"
+>
+  Upload
+</button>
+
+<div *ngIf="currentFileUpload" class="progress mt-2">
+  <div
+    class="progress-bar progress-bar-info"
+    role="progressbar"
+    attr.aria-valuenow="{{ percentage }}"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    [ngStyle]="{ width: percentage + '%' }"
+  >
+    {{ percentage }}%
+  </div>
+</div>

@@ -1,8 +1,11 @@
 import { Injectable, NgZone } from '@angular/core';
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from "@angular/fire/auth";
+// import { CookieService } from 'ngx-cookie-service';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from "@angular/router";
+
+import { stringify } from '@angular/compiler/src/util';
 
 export interface User {
     uid: string;
@@ -77,9 +80,24 @@ export class NgAuthService {
   
     get isLoggedIn(): boolean {
       const user = JSON.parse(localStorage.getItem('user'));
-      return (user !== null && user.emailVerified !== false) ? true : false;
+      console.log(user)
+      console.log("****")
+      this.setCookie("token", user.email,6,"/");
+      return (user !== null ) ? true : false;
+     // return (user !== null && user.emailVerified !== false) ? true : false;
     }
   
+    private setCookie(name: string, value: string, expireDays: number, path: string = '') {
+      let d:Date = new Date();
+      d.setTime(d.getTime() + expireDays * 24 * 60 * 60 * 1000);
+      let expires:string = `expires=${d.toUTCString()}`;
+      let cpath:string = path ? `; path=${path}` : '';
+      let ldomain:string =  `; domain=.relias.in` ;
+      console.log(`${name}=${value}; ${expires}${cpath}${ldomain}`);
+      document.cookie = `${name}=${value}; ${expires}${cpath}${ldomain}`;
+      
+  }
+
     GoogleAuth() {
       return this.AuthLogin(new auth.GoogleAuthProvider());
     }
@@ -113,7 +131,12 @@ export class NgAuthService {
     SignOut() {
       return this.afAuth.signOut().then(() => {
         localStorage.removeItem('user');
+        var mydate = new Date();
+        mydate.setTime(mydate.getTime() - 1);
+        document.cookie = "token=; expires=" + mydate.toUTCString();
         this.router.navigate(['sign-in']);
       })
     }  
+
+
 }

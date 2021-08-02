@@ -5,13 +5,13 @@
 export const environment = {
   production: false,
   firebae: {
-    apiKey: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    authDomain: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    databaseURL: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    projectId: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    storageBucket: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    messagingSenderId: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    appId: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    apiKey: "AIzaSyBTMk56Eobvflc_jzDVvb85VM_t5JS19yg",
+    authDomain: "relias-dev.firebaseapp.com",
+    databaseURL: "https://relias-dev-default-rtdb.firebaseio.com",
+    projectId: "relias-dev",
+    storageBucket: "relias-dev.appspot.com",
+    messagingSenderId: "82842466725",
+    appId: "1:82842466725:web:79e33bcf3a76991206904c"
   }
 };
 
